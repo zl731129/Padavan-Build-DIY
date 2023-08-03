@@ -74,11 +74,11 @@ jobs:
           echo "CONFIG_FIRMWARE_INCLUDE_SHADOWSOCKS=y" >> $m.config #科学上网插件，选择n后全部有关插件都不集成
           echo "CONFIG_FIRMWARE_INCLUDE_XRAY=n" >> $m.config #集成xray执行文件  ~4.5M
           echo "CONFIG_FIRMWARE_INCLUDE_V2RAY=y" >> $m.config #集成v2ray执行文件
-          echo "CONFIG_FIRMWARE_INCLUDE_TROJAN=n" >> $m.config #集成trojan执行文件  ~1.2M
+          echo "CONFIG_FIRMWARE_INCLUDE_TROJAN=y" >> $m.config #集成trojan执行文件  ~1.2M
           echo "CONFIG_FIRMWARE_INCLUDE_SSOBFS=n" >> $m.config #simple-obfs混淆插件
           echo "CONFIG_FIRMWARE_INCLUDE_SSSERVER=n" >> $m.config #SS server
-          echo "CONFIG_FIRMWARE_INCLUDE_KUMASOCKS=n" >> $m.config #socks5
-          echo "CONFIG_FIRMWARE_INCLUDE_IPT2SOCKS=n" >> $m.config
+          echo "CONFIG_FIRMWARE_INCLUDE_KUMASOCKS=y" >> $m.config #socks5
+          echo "CONFIG_FIRMWARE_INCLUDE_IPT2SOCKS=y" >> $m.config
           echo "CONFIG_FIRMWARE_INCLUDE_MICROSOCKS=n" >> $m.config
           echo "CONFIG_FIRMWARE_INCLUDE_NPC=n" >> $m.config #npc
           ##广告管理##
