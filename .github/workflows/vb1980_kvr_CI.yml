@@ -72,7 +72,7 @@ jobs:
           for m in $targets; do if [ -f $m.config ]; then \
           ##科学上网##
           echo "CONFIG_FIRMWARE_INCLUDE_SHADOWSOCKS=y" >> $m.config #科学上网插件，选择n后全部有关插件都不集成
-          echo "CONFIG_FIRMWARE_INCLUDE_XRAY=y" >> $m.config #集成xray执行文件  ~4.5M
+          echo "CONFIG_FIRMWARE_INCLUDE_XRAY=n" >> $m.config #集成xray执行文件  ~4.5M
           echo "CONFIG_FIRMWARE_INCLUDE_V2RAY=y" >> $m.config #集成v2ray执行文件
           echo "CONFIG_FIRMWARE_INCLUDE_TROJAN=y" >> $m.config #集成trojan执行文件  ~1.2M
           echo "CONFIG_FIRMWARE_INCLUDE_SSOBFS=y" >> $m.config #simple-obfs混淆插件
@@ -85,8 +85,8 @@ jobs:
           echo "CONFIG_FIRMWARE_INCLUDE_ADBYBY=n" >> $m.config #adbyby plus+
           echo "CONFIG_FIRMWARE_INCLUDE_KOOLPROXY=n" >> $m.config #KP广告过滤
           ##DNS服务##
-          echo "CONFIG_FIRMWARE_INCLUDE_SMARTDNS=y" >> $m.config #smartdns
-          echo "CONFIG_FIRMWARE_INCLUDE_SMARTDNSBIN=y" >> $m.config #smartdns二进制文件
+          echo "CONFIG_FIRMWARE_INCLUDE_SMARTDNS=n" >> $m.config #smartdns
+          echo "CONFIG_FIRMWARE_INCLUDE_SMARTDNSBIN=n" >> $m.config #smartdns二进制文件
           echo "CONFIG_FIRMWARE_INCLUDE_ADGUARDHOME=n" >> $m.config #adg DNS去AD
           echo "CONFIG_FIRMWARE_INCLUDE_DNSFORWARDER=n" >> $m.config #DNSFORWARDER
           echo "CONFIG_FIRMWARE_INCLUDE_CLOUDFLAREDDNS=n" >> $m.config #CLOUDFLAREDDNS
