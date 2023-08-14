@@ -29,7 +29,7 @@ jobs:
       matrix:
         include:
           - build_variant: "mt7620"
-            targets: "PSG1208 PSG1218 NEWIFI-MINI MI-MINI MI-3 OYE-001 5K-W20"
+            targets: "   MI-MINI MI-3 OYE-001 5K-W20"
           - build_variant: "mt7621"
             targets: "K2P DIR-878 RM2100 R2100"
           - build_variant: "mt7621-usb-1"
