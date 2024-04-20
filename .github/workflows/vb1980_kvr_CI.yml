@@ -134,5 +134,3 @@ jobs:
         if: ${{ github.event.inputs.uploadwet == 'true' && success() }}
         run: |                         # 上传到 WeTransfer
           curl -fsSL git.io/file-transfer | sh
-          ./transfer wet -s -p 16 --no-progress ${images_dir} 2>&1 | tee wetransfer.log
-          echo "::warning file=wetransfer.com::$(cat wetransfer.log | grep https)"
