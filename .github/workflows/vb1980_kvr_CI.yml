@@ -29,9 +29,15 @@ jobs:
       matrix:
         include:
           - build_variant: "mt7620"
-            targets: "   MI-MINI MI-3 OYE-001 5K-W20"
+            targets: "PSG1208 PSG1218 NEWIFI-MINI MI-MINI MI-3 OYE-001 5K-W20"
           - build_variant: "mt7621"
             targets: "K2P DIR-878 RM2100 R2100"
+          - build_variant: "mt7621-usb-1"
+            targets: "A3004NS MSG1500 WR1200JS E8820V2 NEWIFI3 RT-AC1200GU"
+          - build_variant: "mt7621-usb-2"
+            targets: "JCG-836PRO JCG-AC860M JCG-Y2 DIR-882 MI-R3G B70"
+          - build_variant: "mt7628"
+            targets: "360P2 HC5861B HC5761A HC5661A MI-NANO MZ-R13 MZ-R13P"
     steps:
       - name: Checkout main            # 导入主分支
         uses: actions/checkout@v2
@@ -65,22 +71,22 @@ jobs:
           cd $config_dir
           for m in $targets; do if [ -f $m.config ]; then \
           ##科学上网##
-          echo "CONFIG_FIRMWARE_INCLUDE_SHADOWSOCKS=y" >> $m.config #科学上网插件，选择n后全部有关插件都不集成
-          echo "CONFIG_FIRMWARE_INCLUDE_XRAY=y" >> $m.config #集成xray执行文件  ~4.5M
-          echo "CONFIG_FIRMWARE_INCLUDE_V2RAY=y" >> $m.config #集成v2ray执行文件
-          echo "CONFIG_FIRMWARE_INCLUDE_TROJAN=y" >> $m.config #集成trojan执行文件  ~1.2M
-          echo "CONFIG_FIRMWARE_INCLUDE_SSOBFS=y" >> $m.config #simple-obfs混淆插件
-          echo "CONFIG_FIRMWARE_INCLUDE_SSSERVER=y" >> $m.config #SS server
-          echo "CONFIG_FIRMWARE_INCLUDE_KUMASOCKS=y" >> $m.config #socks5
-          echo "CONFIG_FIRMWARE_INCLUDE_IPT2SOCKS=y" >> $m.config
-          echo "CONFIG_FIRMWARE_INCLUDE_MICROSOCKS=y" >> $m.config
-          echo "CONFIG_FIRMWARE_INCLUDE_NPC=y" >> $m.config #npc
+          echo "CONFIG_FIRMWARE_INCLUDE_SHADOWSOCKS=n" >> $m.config #科学上网插件，选择n后全部有关插件都不集成
+          echo "CONFIG_FIRMWARE_INCLUDE_XRAY=n" >> $m.config #集成xray执行文件  ~4.5M
+          echo "CONFIG_FIRMWARE_INCLUDE_V2RAY=n" >> $m.config #集成v2ray执行文件
+          echo "CONFIG_FIRMWARE_INCLUDE_TROJAN=n" >> $m.config #集成trojan执行文件  ~1.2M
+          echo "CONFIG_FIRMWARE_INCLUDE_SSOBFS=n" >> $m.config #simple-obfs混淆插件
+          echo "CONFIG_FIRMWARE_INCLUDE_SSSERVER=n" >> $m.config #SS server
+          echo "CONFIG_FIRMWARE_INCLUDE_KUMASOCKS=n" >> $m.config #socks5
+          echo "CONFIG_FIRMWARE_INCLUDE_IPT2SOCKS=n" >> $m.config
+          echo "CONFIG_FIRMWARE_INCLUDE_MICROSOCKS=n" >> $m.config
+          echo "CONFIG_FIRMWARE_INCLUDE_NPC=n" >> $m.config #npc
           ##广告管理##
           echo "CONFIG_FIRMWARE_INCLUDE_ADBYBY=n" >> $m.config #adbyby plus+
           echo "CONFIG_FIRMWARE_INCLUDE_KOOLPROXY=n" >> $m.config #KP广告过滤
           ##DNS服务##
-          echo "CONFIG_FIRMWARE_INCLUDE_SMARTDNS=y" >> $m.config #smartdns
-          echo "CONFIG_FIRMWARE_INCLUDE_SMARTDNSBIN=y" >> $m.config #smartdns二进制文件
+          echo "CONFIG_FIRMWARE_INCLUDE_SMARTDNS=n" >> $m.config #smartdns
+          echo "CONFIG_FIRMWARE_INCLUDE_SMARTDNSBIN=n" >> $m.config #smartdns二进制文件
           echo "CONFIG_FIRMWARE_INCLUDE_ADGUARDHOME=n" >> $m.config #adg DNS去AD
           echo "CONFIG_FIRMWARE_INCLUDE_DNSFORWARDER=n" >> $m.config #DNSFORWARDER
           echo "CONFIG_FIRMWARE_INCLUDE_CLOUDFLAREDDNS=n" >> $m.config #CLOUDFLAREDDNS
@@ -128,3 +134,5 @@ jobs:
         if: ${{ github.event.inputs.uploadwet == 'true' && success() }}
         run: |                         # 上传到 WeTransfer
           curl -fsSL git.io/file-transfer | sh
+          ./transfer wet -s -p 16 --no-progress ${images_dir} 2>&1 | tee wetransfer.log
+          echo "::warning file=wetransfer.com::$(cat wetransfer.log | grep https)"
